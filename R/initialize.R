@@ -1,17 +1,28 @@
+################################################################################
+# script Name : Initialize.R
+# Purpose : Loads intial portfolio and sugar prices from Qunadl
+#
+# Installs :
+# #Required in windows . Hash this in Mac
+# install.packages("curl")
+# install.packages("devtools")
+# install_github('quandl/R-package')
+# install.packages("quantstrat", repos="http://R-Forge.R-project.org")
+#
+################################################################################
+
+
+
 require(TTR)
 require(quantmod)
 require(PerformanceAnalytics)
 require(quantstrat)
 
-#Required in windows . Hash this in Mac
-#install.packages("curl")
 library(curl)
 
 
 # price of sugar
-#install.packages("devtools")
 library(devtools)
-#install_github('quandl/R-package')
 library(Quandl)
 
 options("getsymbols.warning4.0" = FALSE)
