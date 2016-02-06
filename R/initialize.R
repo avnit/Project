@@ -29,12 +29,9 @@ currency('USD')
 
 Sys.setenv(TZ = "UTC")
 
-# this come from Xls sheet and hard coded
-stock.str <-  c("HSY","MDLZ", "RMCF", "TR","KO","PEP","SODA","DPS","CAG","GIS","SBUX","KHC",
-                "SJM","CCE","UN","DF","SYUT","DNKN","MCD","RRGB","TSN","CPB","TR","HRL","MKC",
-                "LANC","BGS","LNCE","JBSS","PF","KKD","SONC","JACK","WEN","JMBA","MNST","FIZZ",
-                "JJSF","INGR","RMCF","WWAV","FDP","YUM","CBO","DENN","POST"
-)
+# The stock list is maintained in a CSV file and we need to convert that into a vector.
+stock.str <-as.vector(t(read.csv(file="~/Project/Data/holdings-xlk.csv",header = TRUE,sep=",")[1]))
+
 # Loop only if we need to download the data.
 if (!"HSY" %in% ls())
 {
