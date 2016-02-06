@@ -43,6 +43,13 @@ Sys.setenv(TZ = "UTC")
 # The stock list is maintained in a CSV file and we need to convert that into a vector.
 stock.str <-as.vector(t(read.csv(file="~/Project/Data/holdings-xlk.csv",header = TRUE,sep=",")[1]))
 
+# get sugar price as dataframe
+as.data.frame(Quandl("WSJ/SUGAR_FOB"))-> sugar_WSF_Prices
+as.data.frame(Quandl("CHRIS/ICE_SB1")) -> SugarPrices
+sugarPrice <- as.data.frame(read.csv(file="~/Project/Data/BloombergSugarPrices.csvWithChange",header=TRUE,sep=","))
+class(sugarPrice)
+
+
 # Loop only if we need to download the data.
 if (!"HSY" %in% ls())
 {
@@ -56,11 +63,8 @@ if (!"HSY" %in% ls())
 
 }
 
-# get sugar price as dataframe
-as.data.frame(Quandl("WSJ/SUGAR_FOB"))-> sugar_WSF_Prices
-as.data.frame(Quandl("CHRIS/ICE_SB1")) -> SugarPrices
-sugarPrice <- as.data.frame(read.csv(file="~/Project/Data/SugarPrices.csv",header=FALSE,sep=","))
-class(sugarPrice)
+lapply(stock.str,rcpp_ModifyDataFrame,SugarPriceInput=sugarPrice)
+
 
 
 
