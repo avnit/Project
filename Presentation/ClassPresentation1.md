@@ -1,7 +1,7 @@
-ClassPresentation1
+Class Presentation
 ========================================================
-author: 
-date: 
+author: Avnit ,Evan , Hetal , Preedee
+date: Jan 26th 2016
 
 First Slide
 ========================================================

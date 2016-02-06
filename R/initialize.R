@@ -57,7 +57,12 @@ if (!"HSY" %in% ls())
 }
 
 # get sugar price as dataframe
-as.data.frame(Quandl("FRED/M04031US35620M267NNBR")) -> SugarPrices
+as.data.frame(Quandl("WSJ/SUGAR_FOB"))-> sugar_WSF_Prices
+as.data.frame(Quandl("CHRIS/ICE_SB1")) -> SugarPrices
+sugarPrice <- as.data.frame(read.csv(file="~/Project/Data/SugarPrices.csv",header=FALSE,sep=","))
+class(sugarPrice)
+
+
 
 
 

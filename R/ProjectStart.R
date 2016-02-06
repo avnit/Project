@@ -33,11 +33,11 @@ stratBBands <- strategy("bbands")
 #first indicator
 stratBBands <-
   add.indicator(
-    strategy = stratBBands, name = "CCINew", arguments = list(x = mktdata, n = 10),label = "nFast"
+    strategy = stratBBands, name = "CCINew", arguments = list(x = quote(Cl(mktdata)), n = 10),label = "nCCI"
   )
 stratBBands <-
   add.indicator(
-    strategy = stratBBands, name = "CCINew", arguments = list(x = quote(mktdata), n = 30),label = "nSlow"
+    strategy = stratBBands, name = "CCINew", arguments = list(x = quote(Cl(mktdata)), n = 30),label = "nSlow"
   )
 
 
