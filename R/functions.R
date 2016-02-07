@@ -2,8 +2,9 @@ bindicator <- function(x,n = 10,...)
 {
   indicator<-as.data.frame(x)
   # print(x[,6])
+  indicator$bindicator = Cl(x)
 
- colnames(indicator) <- "bindicator"
+# colnames(indicator) <- "bindicator"
  return(indicator)
 }
 
@@ -11,8 +12,7 @@ sindicator <- function(x,n = 10,...)
 {
   indicator<-as.data.frame(x)
   # print(x[,6])
-
-  colnames(indicator) <- "sindicator"
+  indicator$sindicator = Cl(x)
   return(indicator)
 }
 
@@ -27,7 +27,7 @@ sindicator <- function(x,n = 10,...)
       tradeSize <- tradeSize * -1
     }
     pos <- getPosQty(portfolio,symbol,timestamp)
-    atrString <- paste0("indicator")
+    atrString <- paste0("SMA.buy")
     atrCol <- grep(atrString,colnames(mktdata))
 
     if (length(atrCol) == 0) {

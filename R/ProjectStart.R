@@ -33,11 +33,11 @@ thresholdVol <- 0
 #first indicator
 stratBBands <-
   add.indicator(
-    strategy = stratBBands, name = "bindicator", arguments = list(x = quote(mktdata$indicator), n = 10),label = "buy"
+    strategy = stratBBands, name = "SMA", arguments = list(x = quote(Cl(mktdata)), n = 1),label = "buy"
   )
 stratBBands <-
   add.indicator(
-    strategy = stratBBands, name = "sindicator", arguments = list(x = quote(mktdata$indicator), n = 10),label = "sell"
+    strategy = stratBBands, name = "SMA", arguments = list(x = quote(Cl(mktdata)), n = 1),label = "sell"
   )
 
 
@@ -45,12 +45,11 @@ stratBBands <-
 #add signals:
 stratBBands <-
   add.signal(
-    stratBBands,"sigThreshold", arguments = list(column = "bindicator.buy",threshold=thresholdVol, relationship = "gt",cross=TRUE
-    ),label = "long"
+    stratBBands,name="sigThreshold", arguments = list(column = "SMA.buy",threshold=thresholdVol, relationship = "gt",cross=FALSE),label = "long"
   )
 stratBBands <-
   add.signal(
-    stratBBands,"sigThreshold", arguments = list(column = "sindicator.sell",threshold=thresholdVol, relationship = "lt",cross=TRUE
+    stratBBands,name="sigThreshold", arguments = list(column = "SMA.sell",threshold=thresholdVol, relationship = "lt",cross=TRUE
     ),label = "short"
   )
 tradeSize <- 10000

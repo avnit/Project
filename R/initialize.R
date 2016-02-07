@@ -114,7 +114,8 @@ for (i in 1:length(mylist) )
   temp$indicator<- 0
   temp$indicator[temp$CHG_PCT_1D > 0.2 || temp$cci.x > 50 || temp$EMA.x > 60 || temp$pct > 0.7 ] <- 1
   temp$indicator[temp$CHG_PCT_1D < 0.2 || temp$cci.x < 50 || temp$EMA.x < 60 || temp$pct < 0.7 ] <- -1
-  assign(names,temp[,c(seq(5,9),length(temp))])
+  temp[,8]<-temp$indicator
+  assign(names,as.xts(temp[,c(seq(5,9))]))
 
 
 
