@@ -1,49 +1,19 @@
-CCINew <- function(x,n = 10,...)
+bindicator <- function(x,n = 10,...)
 {
+  indicator<-as.data.frame(x)
   # print(x[,6])
-  y <- TTR::CCI(x,n = n,...)
-  out<-y$CCI
-  #  print(y)
 
-
-  #print(head(out))
-
-  out[is.na(out)] <- x[is.na(out)]
-  colnames(out) <- "cci"
-  return(out)
+ colnames(indicator) <- "bindicator"
+ return(indicator)
 }
 
-
-# Computes RSI
-RSNNew <- function(x,n = 10,...)
+sindicator <- function(x,n = 10,...)
 {
+  indicator<-as.data.frame(x)
   # print(x[,6])
-  y <- TTR::RSN(x,n = n,...)
-  out<-y$RSN
-  #  print(y)
 
-
-  #print(head(out))
-
-  out[is.na(out)] <- x[is.na(out)]
-  colnames(out) <- "RSN"
-  return(out)
-}
-
-# bbands n=14 n=30
-BBandsNew <- function(x,n = 10,...)
-{
-  # print(x[,6])
-  y <- TTR::BBands(x,n = n,...)
-  out<-y$BBands
-  #  print(y)
-
-
-  #print(head(out))
-
-  out[is.na(out)] <- x[is.na(out)]
-  colnames(out) <- "bbands"
-  return(out)
+  colnames(indicator) <- "sindicator"
+  return(indicator)
 }
 
 
@@ -57,7 +27,7 @@ BBandsNew <- function(x,n = 10,...)
       tradeSize <- tradeSize * -1
     }
     pos <- getPosQty(portfolio,symbol,timestamp)
-    atrString <- paste0("cci.", atrMod)
+    atrString <- paste0("indicator")
     atrCol <- grep(atrString,colnames(mktdata))
 
     if (length(atrCol) == 0) {

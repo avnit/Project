@@ -21,9 +21,7 @@ require(quantstrat)
 library(curl)
 
 
-# price of sugar
-library(devtools)
-library(Quandl)
+
 library(openair)
 
 options("getsymbols.warning4.0" = FALSE)
@@ -46,8 +44,7 @@ stockList <- read.csv(file="~/Project/Data/holdings-xlk.csv",header = TRUE,sep="
 stock.str <-as.vector(t(stockList[1]))
 
 # get sugar price as dataframe
-as.data.frame(Quandl("WSJ/SUGAR_FOB"))-> sugar_WSF_Prices
-as.data.frame(Quandl("CHRIS/ICE_SB1")) -> SugarPrices
+
 sugarPrice <- as.data.frame(read.csv(file="~/Project/Data/BloombergSugarPrices.csvWithChange",header=TRUE,sep=","))
 row.names(sugarPrice)<-as.Date(sugarPrice$Date, "%Y-%m-%d")
 sugarPrice$Date2<-as.Date(sugarPrice$Date, "%Y-%m-%d")
@@ -66,7 +63,7 @@ sugarPriceInSample <- as.data.frame(as.xts(sugarPrice)[paste0(from,"::", to)])
   )
 
 
-
+  stock(stock.str,currency = 'USD',multiplier = 1)
 
 
 list.function <-  function() {
@@ -114,7 +111,10 @@ for (i in 1:length(mylist) )
   temp<-merge(temp,na.omit(bbands),by="row.names")
   row.names(temp)<-temp$Row.names
   names<-paste(my.df.names[i])
-  assign(names,temp[,seq(5,length(temp))])
+  temp$indicator<- 0
+  temp$indicator[temp$CHG_PCT_1D > 0.2 || temp$cci.x > 50 || temp$EMA.x > 60 || temp$pct > 0.7 ] <- 1
+  temp$indicator[temp$CHG_PCT_1D < 0.2 || temp$cci.x < 50 || temp$EMA.x < 60 || temp$pct < 0.7 ] <- -1
+  assign(names,temp[,c(seq(5,9),length(temp))])
 
 
 

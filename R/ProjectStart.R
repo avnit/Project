@@ -11,8 +11,8 @@ suppressWarnings(rm(
   "account.st","portfolio.st","stratBBands",'start_t','end_t'
 ))
 
-currency('USD')
-stock(stock.str,currency = 'USD',multiplier = 1)
+
+
 
 
 
@@ -28,37 +28,16 @@ initAcct(
 initOrders(portfolio = portfolio.st,initDate = initDate)
 
 stratBBands <- strategy("bbands")
-
+thresholdVol <- 0
 
 #first indicator
 stratBBands <-
   add.indicator(
-    strategy = stratBBands, name = "CCINew", arguments = list(x = quote(Cl(mktdata)), n = 10),label = "nCCI"
+    strategy = stratBBands, name = "bindicator", arguments = list(x = quote(mktdata$indicator), n = 10),label = "buy"
   )
 stratBBands <-
   add.indicator(
-    strategy = stratBBands, name = "CCINew", arguments = list(x = quote(Cl(mktdata)), n = 30),label = "lCCI"
-  )
-
-
-
-stratBBands <-
-  add.indicator(
-    strategy = stratBBands, name = "RSINew", arguments = list(x = mktdata, n = 10),label = "nFast"
-  )
-stratBBands <-
-  add.indicator(
-    strategy = stratBBands, name = "RSINew", arguments = list(x = quote(mktdata), n = 30),label = "nSlow"
-  )
-
-
-stratBBands <-
-  add.indicator(
-    strategy = stratBBands, name = "BBandsNew", arguments = list(x = mktdata, n = 10),label = "nFast"
-  )
-stratBBands <-
-  add.indicator(
-    strategy = stratBBands, name = "BBandsNew", arguments = list(x = quote(mktdata), n = 30),label = "nSlow"
+    strategy = stratBBands, name = "sindicator", arguments = list(x = quote(mktdata$indicator), n = 10),label = "sell"
   )
 
 
@@ -66,14 +45,12 @@ stratBBands <-
 #add signals:
 stratBBands <-
   add.signal(
-    stratBBands,name = "sigCrossover",arguments = list(
-      columns = c("nFast","nSlow"),relationship = "gt"
+    stratBBands,"sigThreshold", arguments = list(column = "bindicator.buy",threshold=thresholdVol, relationship = "gt",cross=TRUE
     ),label = "long"
   )
 stratBBands <-
   add.signal(
-    stratBBands,name = "sigCrossover",arguments = list(
-      columns = c("nFast","nSlow"),relationship = "lt"
+    stratBBands,"sigThreshold", arguments = list(column = "sindicator.sell",threshold=thresholdVol, relationship = "lt",cross=TRUE
     ),label = "short"
   )
 tradeSize <- 10000
@@ -82,15 +59,15 @@ tradeSize <- 10000
 stratBBands <-
   add.rule(
     stratBBands,name = 'ruleSignal', arguments = list(
-      sigcol = "long",sigval = TRUE, ordertype = "market",orderside = "long", prefer =
+     sigcol = "long",sigval = TRUE, ordertype = "market",orderside = "long", prefer =
         'Open',osFUN = osDollarATR, tradeSize = tradeSize , pctATR = 2, atrMod = "nFast",replace = FALSE
-    ),type = 'enter',label = 'EnterLong',path.dep = TRUE
+   ),type = 'enter',label = 'EnterLong',path.dep = TRUE
   )
 stratBBands <-
   add.rule(
     stratBBands,name = 'ruleSignal', arguments = list(
       sigcol = "short",sigval = TRUE, ordertype = "market", orderside = "short",prefer =
-        'Open',osFUN = osDollarATR, tradeSize = -tradeSize, pctATR = 2, atrMod = "nSlow",replace = FALSE
+       'Open',osFUN = osDollarATR, tradeSize = -tradeSize, pctATR = 2, atrMod = "nSlow",replace = FALSE
     ),type = 'enter',label = 'EnterShort',path.dep = TRUE
   )
 
