@@ -7,14 +7,14 @@ from="2013-01-01"
 to = "2016-01-01"
 
 #decisions
-BuyChange<-0.2
-sellChange<-0.2
+BuyChange<-0.1
+sellChange<--0.2
 buyRSi<-50
-sellRsi<-50
+sellRsi<-20
 BuyCci<-60
-SellCci<-60
+SellCci<-20
 buyBbanbs<-0.7
-sellBbands<-0.7
+sellBbands<-0.3
 thresholdVol <- 0
 
 

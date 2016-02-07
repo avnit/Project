@@ -40,12 +40,11 @@ stockList <- read.csv(file="~/Project/Data/holdings-xlk.csv",header = TRUE,sep="
 stock.str <-as.vector(t(stockList[1]))
 
 # get sugar price as dataframe
-
-sugarPrice <- as.data.frame(read.csv(file="~/Project/Data/BloombergSugarPrices.csvWithChange",header=TRUE,sep=","))
+sugarPrice <- as.data.frame(read.csv(file="~/Project/Data/BloombergSugarPrices.csvWithChange",header=TRUE,sep=",",stringsAsFactors =FALSE))
 row.names(sugarPrice)<-as.Date(sugarPrice$Date, "%Y-%m-%d")
 sugarPrice$Date2<-as.Date(sugarPrice$Date, "%Y-%m-%d")
 sugarPriceInSample <- as.data.frame(as.xts(sugarPrice)[paste0(from,"::", to)])
-
+sugarPriceInSample$CHG_PCT_1D<-as.numeric(as.character(sugarPriceInSample$CHG_PCT_1D))
 
 
 # Loop only if we need to download the data.
@@ -109,15 +108,9 @@ for (i in 1:length(mylist) )
   names<-paste(my.df.names[i])
   temp$indicator<- 0
 
-    if (temp$CHG_PCT_1D > BuyChange || temp$cci.x > BuyCci || temp$EMA.x > buyRSi || temp$pct > buyBbanbs ])
-    {
-      temp$indicator<- 1
-    }
+  temp$indicator[temp$CHG_PCT_1D > BuyChange & (temp$cci.x > BuyCci || temp$EMA.x > buyRSi || temp$pct > buyBbanbs) ]<- 1
+  temp$indicator[temp$CHG_PCT_1D < sellChange  & (temp$cci.x < SellCci || temp$EMA.x < sellRsi || temp$pct < sellBbands) ]<--1
 
-    if(temp$CHG_PCT_1D < sellChange || temp$cci.x < SellCci || temp$EMA.x < sellRsi || temp$pct < sellBbands ])
-    {
-      temp$indicator<- -1
-    }
 
   temp[,8]<-temp$indicator
   assign(names,as.xts(temp[,c(seq(5,9))]))
