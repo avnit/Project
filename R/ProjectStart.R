@@ -1,3 +1,23 @@
+
+#Parameters
+initDate = "2001-01-01"
+
+# In sample
+from="2013-01-01"
+to = "2016-01-01"
+
+#decisions
+BuyChange<-0.2
+sellChange<-0.2
+buyRSi<-50
+sellRsi<-50
+BuyCci<-60
+SellCci<-60
+buyBbanbs<-0.7
+sellBbands<-0.7
+thresholdVol <- 0
+
+
 source('~/Project/R/initialize.R')
 source('~/Project/R/functions.R')
 
@@ -28,7 +48,7 @@ initAcct(
 initOrders(portfolio = portfolio.st,initDate = initDate)
 
 stratBBands <- strategy("bbands")
-thresholdVol <- 0
+
 
 #first indicator
 stratBBands <-

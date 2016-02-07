@@ -26,11 +26,7 @@ library(openair)
 
 options("getsymbols.warning4.0" = FALSE)
 
-initDate = "2001-01-01"
 
-# In sample
-from="2013-01-01"
-to = "2016-01-01"
 
 rm(list = ls(.blotter), envir = .blotter)
 
@@ -112,8 +108,17 @@ for (i in 1:length(mylist) )
   row.names(temp)<-temp$Row.names
   names<-paste(my.df.names[i])
   temp$indicator<- 0
-  temp$indicator[temp$CHG_PCT_1D > 0.2 || temp$cci.x > 50 || temp$EMA.x > 60 || temp$pct > 0.7 ] <- 1
-  temp$indicator[temp$CHG_PCT_1D < 0.2 || temp$cci.x < 50 || temp$EMA.x < 60 || temp$pct < 0.7 ] <- -1
+
+    if (temp$CHG_PCT_1D > BuyChange || temp$cci.x > BuyCci || temp$EMA.x > buyRSi || temp$pct > buyBbanbs ])
+    {
+      temp$indicator<- 1
+    }
+
+    if(temp$CHG_PCT_1D < sellChange || temp$cci.x < SellCci || temp$EMA.x < sellRsi || temp$pct < sellBbands ])
+    {
+      temp$indicator<- -1
+    }
+
   temp[,8]<-temp$indicator
   assign(names,as.xts(temp[,c(seq(5,9))]))
 
