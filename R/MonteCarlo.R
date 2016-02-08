@@ -1,3 +1,5 @@
+library("MASS")
+
 # get data from the env 
 data<-mget(my.df.names)
 # compute price matrix 
