@@ -47,8 +47,6 @@ sugarPriceInSample <- as.data.frame(as.xts(sugarPrice)[paste0(from,"::", to)])
 sugarPriceInSample$CHG_PCT_1D<-as.numeric(as.character(sugarPriceInSample$CHG_PCT_1D))
 
 
-# Loop only if we need to download the data.
-
   #if data is not in the enviornment then get it from Yahoo getSymbol
   suppressMessages(
     getSymbols(
@@ -68,8 +66,6 @@ list.function <-  function() {
 list.function() -> mylist
 my.df.names <- names(mylist)
 
-
-
 for (i in 1:length(mylist) )
 {
 
@@ -85,8 +81,6 @@ for (i in 1:length(mylist) )
   cci<-as.data.frame(TTR::CCI(HLC=HLC(DataXTSObject),n=20,maType='EMA',rm.na=TRUE))
   cci$date<-as.Date(row.names(cci),"%Y-%m-%d")
 
-
-
   #RSI
   rsi<-as.data.frame(TTR::RSI(price=Cl(DataXTSObject)))
   rsi$date<-as.Date(row.names(rsi),"%Y-%m-%d")
@@ -100,19 +94,21 @@ for (i in 1:length(mylist) )
   #CCI merger
   temp<-merge(temp,na.omit(cci),by="row.names")
   row.names(temp)<-temp$Row.names
-
+  # RSI merger
   temp<-merge(temp,na.omit(rsi),by="row.names")
   row.names(temp)<-temp$Row.names
+  # bbands merger
   temp<-merge(temp,na.omit(bbands),by="row.names")
   row.names(temp)<-temp$Row.names
+  # get the name of the object to load from env 
   names<-paste(my.df.names[i])
   temp$indicator<- 0
-
+  # set the indicator
   temp$indicator[temp$CHG_PCT_1D > BuyChange & (temp$cci.x > BuyCci || temp$EMA.x > buyRSi || temp$pct > buyBbanbs) ]<- 1
   temp$indicator[temp$CHG_PCT_1D < sellChange  & (temp$cci.x < SellCci || temp$EMA.x < sellRsi || temp$pct < sellBbands) ]<--1
 
-
-  temp[,8]<-temp$indicator
+  # replace High price with indicator
+  temp[,6]<-temp$indicator
   assign(names,as.xts(temp[,c(seq(5,9))]))
 
 
