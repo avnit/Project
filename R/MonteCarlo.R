@@ -1,14 +1,17 @@
 library("MASS")
 
-# get data from the env 
+#compute price matrix
 data<-mget(my.df.names)
-# compute price matrix 
-pM<-lapply(cbind,data[[]][,4])
+for(i in seq(1,length(data)))
+{
+  pM<-cbind(pm,na.omit(data[[i]][,2]))
+}
+
 
 #compute returns matrix
 rM <-  apply(pM,2,function(x) diff(log(na.omit(x))))
 
-# why are we getting NAN exceptions 
+# why are we getting NAN exceptions
 
 #look at pairwise charts
 pairs(coredata(rM))
@@ -30,9 +33,9 @@ for(i in 1:ncol(rM)){
   sPL[[i]] <-round(p0[i]*exp(cumsum(rV[,i])),2)
 }
 
-# create Graph in the Plot area 
-# can use Rcpp function that we created noofrow = ElvisOperator(length(sPL) %% 2 == 0) , 
-noofrow <- if(lenght(sPL) %% 2 == 0 ) length(sPL)/2  else length(sPL)/2 + 1 
+# create Graph in the Plot area
+# can use Rcpp function that we created noofrow = ElvisOperator(length(sPL) %% 2 == 0) ,
+noofrow <- if(lenght(sPL) %% 2 == 0 ) length(sPL)/2  else length(sPL)/2 + 1
 par (mfrow = c(noofrow , 2))
 #plot simulated prices
 for ( i in 1:length(sPL))

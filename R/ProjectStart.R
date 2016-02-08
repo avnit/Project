@@ -1,29 +1,9 @@
-
-#Parameters
-initDate = "2001-01-01"
-
-# In sample
-from="2013-01-01"
-to = "2016-01-01"
-
-#decisions
-BuyChange<-0.1
-sellChange<--0.2
-buyRSi<-50
-sellRsi<-20
-BuyCci<-60
-SellCci<-20
-buyBbanbs<-0.7
-sellBbands<-0.3
-thresholdVol <- 0
-
-
-source('~/Project/R/initialize.R')
-source('~/Project/R/functions.R')
-
-
-
-initEq = 50000
+################################################################################
+# script Name : ProjectStart.R
+# Purpose : Creates Rule , indicators and trade stats
+#
+#
+################################################################################
 
 suppressWarnings(rm("order_book.bbands",pos = .strategy))
 suppressWarnings(rm("account.bbands","portfolio.bbands",pos = .blotter))
@@ -53,11 +33,11 @@ stratBBands <- strategy("bbands")
 #first indicator
 stratBBands <-
   add.indicator(
-    strategy = stratBBands, name = "SMA", arguments = list(x = quote(Cl(mktdata)), n = 1),label = "buy"
+    strategy = stratBBands, name = "SMA", arguments = list(x = quote(Hi(mktdata)), n = 1),label = "buy"
   )
 stratBBands <-
   add.indicator(
-    strategy = stratBBands, name = "SMA", arguments = list(x = quote(Cl(mktdata)), n = 1),label = "sell"
+    strategy = stratBBands, name = "SMA", arguments = list(x = quote(Hi(mktdata)), n = 1),label = "sell"
   )
 
 
