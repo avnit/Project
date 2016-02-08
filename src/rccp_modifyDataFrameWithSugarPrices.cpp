@@ -23,6 +23,14 @@ List rcpp_getPrices(NumericVector Prices) {
 }
 
 
+SEPX ElvisOperator (SEPX RuleName , SEPX ifTrue , SEPX ifFalse) {
+  if (RuleName)
+     return ifTrue;
+  else 
+    return ifFalse;
+}
+
+
 // [[Rcpp::export]]
 List CheapDataFrameBuilder(List a, SEXP Name, StringVector rowNames , StringVector ColumnNames , StringVector SugarNames , int counter) {
   List returned_frame = clone(a);
