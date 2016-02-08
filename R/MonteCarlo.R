@@ -3,7 +3,7 @@ library("MASS")
 # get data from the env 
 data<-mget(my.df.names)
 # compute price matrix 
-pM<-lapply(cbind,data[[]][,4)
+pM<-lapply(cbind,data[[]][,4])
 
 #compute returns matrix
 rM <-  apply(pM,2,function(x) diff(log(na.omit(x))))
