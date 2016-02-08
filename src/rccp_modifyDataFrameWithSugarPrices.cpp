@@ -22,7 +22,7 @@ List rcpp_getPrices(NumericVector Prices) {
   return z;
 }
 
-
+// [[Rcpp::export]]
 SEPX ElvisOperator (SEPX RuleName , SEPX ifTrue , SEPX ifFalse) {
   if (RuleName)
      return ifTrue;
