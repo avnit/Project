@@ -68,7 +68,7 @@ list.function <-  function() {
 list.function() -> mylist
 my.df.names <- names(mylist)
 
-source('~/Project/R/functions.R')
+
 
 for (i in 1:length(mylist) )
 {
