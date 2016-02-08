@@ -1,19 +1,12 @@
-#getSymbols()
-
-#plot the prices of these stocks
-par(mfrow = c(3,2))
-plot(AAPL[,6], main = "AAPL")
-plot(QQQQ[,6], main = "QQQQ")
-plot(SPY[,6], main = "SPY")
-plot(GOOG[,6], main = "GOOG")
-plot(CVX[,6], main = "CVX")
-par(mfrow = c(1,1))
-
-#compute price matrix
-pM <- cbind(AAPL[,6], QQQQ[,6], SPY[,6], GOOG[,6], CVX[,6])
+# get data from the env 
+data<-mget(my.df.names)
+# compute price matrix 
+pM<-lapply(cbind,data[[]][,4)
 
 #compute returns matrix
-rM <-  apply(pM,2,function(x) diff(log(x)))
+rM <-  apply(pM,2,function(x) diff(log(na.omit(x))))
+
+# why are we getting NAN exceptions 
 
 #look at pairwise charts
 pairs(coredata(rM))
@@ -35,10 +28,11 @@ for(i in 1:ncol(rM)){
   sPL[[i]] <-round(p0[i]*exp(cumsum(rV[,i])),2)
 }
 
+# create Graph in the Plot area 
+noofrow <- if(lenght(sPL) %% 2 == 0 ) length(sPL) else length(sPL)
+par (mfrow = c(noofrow , 2))
 #plot simulated prices
-par(mfrow = c(3,2))
-plot(sPL[[1]],main="AAPLsim",type="l")
-plot(sPL[[2]], main = "QQQQ sim",type = "l")
-plot(sPL[[3]], main = "SPY sim", type = "l")
-plot(sPL[[4]], main = "GOOG sim",type = "l")
-plot(sPL[[5]], main = "CVX sim", type = "l")
+for ( i in 1:length(sPL))
+{
+plot(sPL[[i]],main="output" + 1,type="l")
+}
