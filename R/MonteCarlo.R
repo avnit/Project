@@ -31,7 +31,8 @@ for(i in 1:ncol(rM)){
 }
 
 # create Graph in the Plot area 
-noofrow <- if(lenght(sPL) %% 2 == 0 ) length(sPL) else length(sPL)
+# can use Rcpp function that we created noofrow = ElvisOperator(length(sPL) %% 2 == 0) , 
+noofrow <- if(lenght(sPL) %% 2 == 0 ) length(sPL)/2  else length(sPL)/2 + 1 
 par (mfrow = c(noofrow , 2))
 #plot simulated prices
 for ( i in 1:length(sPL))
