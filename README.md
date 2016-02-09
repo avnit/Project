@@ -5,7 +5,7 @@
 ### Directory Structure
 =======================
 
-|Project |             |  |
+|Folder |File Name |Description |
 ------------:|------------:|------------:|
 |R   |      | | 
 |    | InSampleTesting.R|The File is starting point to run in the sample testing|
