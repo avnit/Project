@@ -20,7 +20,6 @@
 |    |Holdings-xlk.csv | The stocks that are needed for the run |
 |    | BloomnbergSugarPrice.csvWithChange| bloomberg sugar prices |
 
-
-#### Rules Description
 ======================
-++++++++++++++++++++++
+##### Rules Description
+
