@@ -1,7 +1,7 @@
 bindicator <- function(x,...)
 {
   indicator<-as.data.frame(x)
-  # print(x[,6])
+  # High is our indicator
   indicator$bindicator = Hi(x)
 
 # colnames(indicator) <- "bindicator"
@@ -11,7 +11,7 @@ bindicator <- function(x,...)
 sindicator <- function(x,...)
 {
   indicator<-as.data.frame(x)
-  # print(x[,6])
+   # High is our indicator
   indicator$sindicator = Hi(x)
   return(indicator)
 }
