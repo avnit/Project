@@ -11,11 +11,6 @@ suppressWarnings(rm(
   "account.st","portfolio.st","stratBBands",'start_t','end_t'
 ))
 
-
-
-
-
-
 portfolio.st = 'bbands'
 account.st = 'bbands'
 
@@ -39,8 +34,6 @@ stratBBands <-
   add.indicator(
     strategy = stratBBands, name = "SMA", arguments = list(x = quote(Hi(mktdata)), n = 1),label = "sell"
   )
-
-
 
 #add signals:
 stratBBands <-
