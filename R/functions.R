@@ -1,4 +1,4 @@
-bindicator <- function(x,n = 10,...)
+bindicator <- function(x,...)
 {
   indicator<-as.data.frame(x)
   # print(x[,6])
@@ -8,7 +8,7 @@ bindicator <- function(x,n = 10,...)
  return(indicator)
 }
 
-sindicator <- function(x,n = 10,...)
+sindicator <- function(x,...)
 {
   indicator<-as.data.frame(x)
   # print(x[,6])
