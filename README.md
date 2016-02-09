@@ -1,5 +1,6 @@
-# Project
+# SG 40 Sugar Trading Project for class 621 
 ### Directory Structure
+##### By Avnit Evan Hetal and Preedee
 
 |Project |             |  |
 ------------:|------------:|------------:|
