@@ -29,10 +29,16 @@ RSI is a momentum oscillator that measures the speed and change of price movemen
 
 Sugar Quant 40 uses Bollinger Bands to judge volatility and was given both a buy and sell threshold and we also use RSI and CCI as indicators determine if a stock is being under or overvalued.  If the daily price of sugar change is more than 0.1, a buy indicator will be satisfied and sell indicator will be satisfied if the price decreased by more than 0.2. We therefore believed that with these strategies, Sugar Quant 40 can maximize our returns and minimize the risk that may occur.
 
+========================
+
+
+
+
+
 -------------------------
 
 
-========================
+
 
 
 
