@@ -5,7 +5,7 @@ data<-mget(my.df.names)
 pM<-na.omit(data[[1]][,4])
 for(i in seq(2,length(data)))
 {
-  pM<-cbind(pM,na.omit(data[[i]][,4]))
+  pM<-cbind(pM,data[[i]][,4])
 }
 
 
@@ -15,7 +15,11 @@ rM <-  apply(pM,2,function(x) diff(log(x)))
 # why are we getting NAN exceptions
 
 #look at pairwise charts
-#pairs(coredata(rM))
+#
+tryCatch({
+  rM[is.na(rM)] <- 0
+  par(mar = rep(2, 4))
+  pairs(coredata(rM))
 
 
 #compute the covariance matrix
@@ -42,5 +46,7 @@ par (mfrow = c(noofrow , 2))
 #plot simulated prices
 for ( i in 1:length(sPL))
 {
-plot(sPL[[i]],main="output" + 1,type="l")
+# plot only works in big screen
+  plot(sPL[[i]],main="output" + 1,type="l")
 }
+},error=function(e){print(e)})
