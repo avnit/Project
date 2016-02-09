@@ -1,6 +1,6 @@
 # SG 40 Sugar Trading Project for class FINC 621 
 ##### By Avnit Evan Hetal and Preedee
-
+=====================================================
 
 ### Directory Structure
 =======================
@@ -21,5 +21,17 @@
 |    | BloomnbergSugarPrice.csvWithChange| bloomberg sugar prices |
 
 ======================
-##### Rules Description
+##### Project Description
+-------------------------
+
+
+========================
+
+
+
+
+
+
+
+
 
