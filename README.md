@@ -1,17 +1,17 @@
 # Project
-# Sugar Price project
+### Directory Structure
 
-|Project |             |
-------------:|------------:|
-|R   |      |
-|    | InSampleTesting.R|
-|      |OutOfSampleTesting.R|
-|      |Initialize.R|
-|      |ProjectStart.R|
-|      |Functions.R|
-|      |MonteCarlo.R|
-|Src    |           |
-|      |rccp_modifyDataFrameWithSugarPrices.cpp|
-|Data    |           |
-|    |Holdings-xlk.csv |
-|    | BloomnbergSugarPrice.csvWithChange|
+|Project |             |  |
+------------:|------------:|------------:|
+|R   |      | | 
+|    | InSampleTesting.R|The File is starting point to run in the sample testing|
+|      |OutOfSampleTesting.R|The File is starting point to run Out of the sample testing|
+|      |Initialize.R| Intialize will download the stocks and add indicators for trades|
+|      |ProjectStart.R| Creates the rules , indicators and generates trades |
+|      |Functions.R| All functions |
+|      |MonteCarlo.R| This runs monte carlo simulartor|
+|Src    |           | |
+|      |rccp_modifyDataFrameWithSugarPrices.cpp|The Rccp code to merge sugar prices and stocks |
+|Data    |           |  |
+|    |Holdings-xlk.csv | The stocks that are needed for the run |
+|    | BloomnbergSugarPrice.csvWithChange| bloomberg sugar prices |
