@@ -15,7 +15,7 @@ rM <-  apply(pM,2,function(x) diff(log(x)))
 # why are we getting NAN exceptions
 
 #look at pairwise charts
-pairs(coredata(rM))
+#pairs(coredata(rM))
 
 
 #compute the covariance matrix
