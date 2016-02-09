@@ -17,19 +17,11 @@ require(TTR)
 require(quantmod)
 require(PerformanceAnalytics)
 require(quantstrat)
-
 library(curl)
-
-
-
 library(openair)
 
 options("getsymbols.warning4.0" = FALSE)
-
-
-
 rm(list = ls(.blotter), envir = .blotter)
-
 
 currency('USD')
 
@@ -58,14 +50,16 @@ sugarPriceInSample$CHG_PCT_1D<-as.numeric(as.character(sugarPriceInSample$CHG_PC
 
   stock(stock.str,currency = 'USD',multiplier = 1)
 
-
+# function to get the name of the objects 
 list.function <-  function() {
 
   sapply(stock.str,get,environment(),simplify = FALSE)
 }
 list.function() -> mylist
+# get Names of the list 
 my.df.names <- names(mylist)
 
+#loop through each list item and get the indicator for it.
 for (i in 1:length(mylist) )
 {
 
