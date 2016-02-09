@@ -1,4 +1,4 @@
-# SG 40 Sugar Trading Project for class 621 
+# SG 40 Sugar Trading Project for class FINC 621 
 ##### By Avnit Evan Hetal and Preedee
 
 
@@ -19,3 +19,8 @@
 |Data    |           |  |
 |    |Holdings-xlk.csv | The stocks that are needed for the run |
 |    | BloomnbergSugarPrice.csvWithChange| bloomberg sugar prices |
+
+
+#### Rules Description
+======================
+++++++++++++++++++++++
