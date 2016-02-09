@@ -2,19 +2,21 @@ library("MASS")
 
 #compute price matrix
 data<-mget(my.df.names)
-for(i in seq(1,length(data)))
+pM<-na.omit(data[[1]][,4])
+for(i in seq(2,length(data)))
 {
-  pM<-cbind(pm,na.omit(data[[i]][,2]))
+  pM<-cbind(pM,na.omit(data[[i]][,4]))
 }
 
 
 #compute returns matrix
-rM <-  apply(pM,2,function(x) diff(log(na.omit(x))))
+rM <-  apply(pM,2,function(x) diff(log(x)))
 
 # why are we getting NAN exceptions
 
 #look at pairwise charts
 pairs(coredata(rM))
+
 
 #compute the covariance matrix
 covR <- cov(rM)
@@ -35,7 +37,7 @@ for(i in 1:ncol(rM)){
 
 # create Graph in the Plot area
 # can use Rcpp function that we created noofrow = ElvisOperator(length(sPL) %% 2 == 0) ,
-noofrow <- if(lenght(sPL) %% 2 == 0 ) length(sPL)/2  else length(sPL)/2 + 1
+noofrow <- if(length(sPL) %% 2 == 0 ) length(sPL)/2  else length(sPL)/2 + 1
 par (mfrow = c(noofrow , 2))
 #plot simulated prices
 for ( i in 1:length(sPL))
