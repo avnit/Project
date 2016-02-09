@@ -2,7 +2,7 @@ bindicator <- function(x,n = 10,...)
 {
   indicator<-as.data.frame(x)
   # print(x[,6])
-  indicator$bindicator = Cl(x)
+  indicator$bindicator = Hi(x)
 
 # colnames(indicator) <- "bindicator"
  return(indicator)
@@ -12,7 +12,7 @@ sindicator <- function(x,n = 10,...)
 {
   indicator<-as.data.frame(x)
   # print(x[,6])
-  indicator$sindicator = Cl(x)
+  indicator$sindicator = Hi(x)
   return(indicator)
 }
 
