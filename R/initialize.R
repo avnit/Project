@@ -18,7 +18,7 @@ require(quantmod)
 require(PerformanceAnalytics)
 require(quantstrat)
 library(curl)
-library(openair)
+#library(openair)
 
 options("getsymbols.warning4.0" = FALSE)
 rm(list = ls(.blotter), envir = .blotter)
@@ -50,13 +50,13 @@ sugarPriceInSample$CHG_PCT_1D<-as.numeric(as.character(sugarPriceInSample$CHG_PC
 
   stock(stock.str,currency = 'USD',multiplier = 1)
 
-# function to get the name of the objects 
+# function to get the name of the objects
 list.function <-  function() {
 
   sapply(stock.str,get,environment(),simplify = FALSE)
 }
 list.function() -> mylist
-# get Names of the list 
+# get Names of the list
 my.df.names <- names(mylist)
 
 #loop through each list item and get the indicator for it.
@@ -94,7 +94,7 @@ for (i in 1:length(mylist) )
   # bbands merger
   temp<-merge(temp,na.omit(bbands),by="row.names")
   row.names(temp)<-temp$Row.names
-  # get the name of the object to load from env 
+  # get the name of the object to load from env
   names<-paste(my.df.names[i])
   temp$indicator<- 0
   # set the indicator
