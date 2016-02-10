@@ -3,7 +3,8 @@ library("MASS")
 #compute price matrix
 data<-mget(my.df.names)
 pM<-na.omit(data[[1]][,4])
-for(i in seq(2,length(data)))
+#for(i in seq(2,length(data)))
+for(i in seq(2,10))
 {
   pM<-cbind(pM,data[[i]][,4])
 }
@@ -42,12 +43,12 @@ for(i in 1:ncol(rM)){
 # create Graph in the Plot area
 # can use Rcpp function that we created noofrow = ElvisOperator(length(sPL) %% 2 == 0) ,
 noofrow <- if(length(sPL) %% 2 == 0 ) length(sPL)/2  else length(sPL)/2 + 1
-par (mfrow = c(noofrow , 2))
+par (mfrow = c(3 , 2))
 #plot simulated prices
-for ( i in 1:length(sPL))
+for ( i in c(1,2,4,5,6,7))
 {
 # plot only works in big screen
-  plot(sPL[[i]],main="output" + 1,type="l")
+  plot(sPL[[i]],main=paste0("output",i),type="l")
 }
 },error=function(e){print(e)})
 
