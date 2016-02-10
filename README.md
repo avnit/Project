@@ -38,6 +38,7 @@ Sugar Quant 40 uses Bollinger Bands to judge volatility and was given both a buy
 -------------------------
 
 
+<<<<<<< HEAD
 
 
 
@@ -47,4 +48,6 @@ Sugar Quant 40 uses Bollinger Bands to judge volatility and was given both a buy
 
 
 
+=======
+>>>>>>> 9c37d1ff40182d3846c72c1adf8aa672e2366928
 
