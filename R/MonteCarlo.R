@@ -51,4 +51,3 @@ for ( i in c(1,2,4,5,6,7))
   plot(sPL[[i]],main=paste0("output",i),type="l")
 }
 },error=function(e){print(e)})
-
