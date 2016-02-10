@@ -1,26 +1,24 @@
----
-output: html_document
----
-ClassPresentation
+asdf
 ========================================================
-author: Avnit ,Evan , Hetal , Preedee
-date: Jan 26th 2016
+author: 
+date: 
 
 First Slide
 ========================================================
-SG 40 Trading project.
-Goal of the project
-Our task was to forecast future price of companies who's main product is sugar and we want to use the price of sugar to see if they can give us an positive return by buying these stock as price of sugar increase and selling the stocks as the prices go down. 
 
+For more details on authoring R presentations click the
+**Help** button on the toolbar.
 
+- Bullet 1
+- Bullet 2
+- Bullet 3
 
 Slide With Code
 ========================================================
 
 
 ```r
-summary(mylist)
-summary(tstats)
+summary(cars)
 ```
 
 ```
@@ -36,4 +34,4 @@ summary(tstats)
 Slide With Plot
 ========================================================
 
-![plot of chunk unnamed-chunk-2](ClassPresentation1-figure/unnamed-chunk-2-1.png) 
+![plot of chunk unnamed-chunk-2](asdf-figure/unnamed-chunk-2-1.png) 

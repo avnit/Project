@@ -1,18 +1,18 @@
-bindicator <- function(x,n = 10,...)
+bindicator <- function(x,...)
 {
   indicator<-as.data.frame(x)
-  # print(x[,6])
-  indicator$bindicator = Cl(x)
+  # High is our indicator
+  indicator$bindicator = Hi(x)
 
 # colnames(indicator) <- "bindicator"
  return(indicator)
 }
 
-sindicator <- function(x,n = 10,...)
+sindicator <- function(x,...)
 {
   indicator<-as.data.frame(x)
-  # print(x[,6])
-  indicator$sindicator = Cl(x)
+   # High is our indicator
+  indicator$sindicator = Hi(x)
   return(indicator)
 }
 
